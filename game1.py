@@ -3,28 +3,28 @@ import sys
 import random
 import csv
 
-# Initialize Pygame
+# Initialisierung Pygame:
 pygame.init()
 
-# Window size
+# Fenster:
 width, height = 400, 600
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Die Alkocops')
 
-# Definition of Images
+# Bild-Dateien:
 image_spieler1 = pygame.image.load('images\\lausi.png')
 image_spieler2 = pygame.image.load('images\\passi.png')
 image_spieler3 = pygame.image.load('images\\nilsi.png')
 image_spieler4 = pygame.image.load('images\\fabi.png')
 image_spieler5 = pygame.image.load('images\\hermann.png')
 
-# Character Selection Variables
+# Spieler-Wahl:
 selected_character = 0  # Default to the first character
 character_images = [image_spieler1, image_spieler2, image_spieler3, image_spieler4, image_spieler5]
 
 image_spieler = character_images[selected_character]
 
-# Definition of Colors
+# Farben:
 white = (255, 255, 255)
 black = (0, 0, 0)
 gold = (255, 215, 0)
@@ -32,30 +32,30 @@ brown = (102, 48, 2)
 blue = (102, 178, 255)
 grey = (200, 200, 210)
 
-# Player Properties
+# Spieler:
 player = pygame.Rect((width // 2 - 200, height - 125, 100, 100))
 player_speed = 12
 
-# Beer Properties
+# Bier:
 bier_width = 30
 bier_height = 60
 bier_speed = 3
 beer_spawn = 0.010
 biere = []
 
-# Water Properties
+# Wasser:
 wasser_width = 30
 wasser_height = 60
 wasser_speed = 5
 wassers = []
 
-# Sound Effects
+# SFX:
 rechnung_sfx = pygame.mixer.Sound("sounds\\Ober.wav")
 collide_sfx = pygame.mixer.Sound("sounds\\schluck.wav")
 glass_sfx = pygame.mixer.Sound("sounds\\glas.wav")
 wasser_sfx = pygame.mixer.Sound("sounds\\super.wav")
 
-# Background Music
+# Musik:
 uff_sfx_list = [pygame.mixer.Sound("sounds\\uff1.wav"),
                 pygame.mixer.Sound("sounds\\uff2.wav"),
                 pygame.mixer.Sound("sounds\\uff3.wav"),
@@ -79,21 +79,21 @@ def add_score_to_highscore(name, score):
             writer = csv.writer(file)
             writer.writerow([name, score])
 
-# Lives
+# Leben:
 lives = 3
 
-# Font Sizes
+# Schriftgröße:
 font_size1 = 64  # Start-Screen
 font1 = pygame.font.Font(None, font_size1)
 font_size2 = 32  # Score / Lives
 font2 = pygame.font.Font(None, font_size2)
 
-# Start Phase
+# Start:
 start_ticks = pygame.time.get_ticks()
 start_screen_duration = 3000
 start_screen_shown = False
 
-# Character Selection Loop
+# Start // Spieler wählen:
 character_selection = True
 while character_selection:
     for event in pygame.event.get():
@@ -108,8 +108,12 @@ while character_selection:
             elif event.key == pygame.K_RETURN:
                 character_selection = False
 
-    # Draw character selection screen
+    # Schrift // Start Screen:
     screen.fill(brown)
+    start_screen_text1 = font1.render("Die Alkocops", True, white)
+    start_screen_text2 = font1.render("Stimmt so", True, white)
+    screen.blit(start_screen_text1, (width // 2 - start_screen_text1.get_width() // 2, height - 520))
+    screen.blit(start_screen_text2, (width // 2 - start_screen_text2.get_width() // 2, height - 440))
     character_text = font2.render("Choose Your Character", True, white)
     screen.blit(character_text, (width // 2 - character_text.get_width() // 2, height // 2 - 40))
     enter_text = font2.render("Press Enter", True, white)
@@ -117,18 +121,18 @@ while character_selection:
     arrow_text = font2.render("<--      -->", True, white)
     screen.blit(arrow_text, (width // 2 - arrow_text.get_width() // 2, height // 2 + 140))
 
-    # Display current character image
+    # Images // Start Screen:
     screen.blit(character_images[selected_character], (width // 2 - 50, height // 2))
 
     pygame.display.flip()
 
-# Set chosen character image
+# Spieler festlegen:
 image_spieler = character_images[selected_character]
 
-# Main Game Loop
+# Main Game Loop:
 start_ticks = pygame.time.get_ticks()
 start_screen_shown = False
-start_screen_duration = 3000
+start_screen_duration = 30
 
 clock = pygame.time.Clock()
 running = True
@@ -144,10 +148,6 @@ while running:
 
     current_time = pygame.time.get_ticks()
     if not start_screen_shown:
-        start_screen_text1 = font1.render("Die Alkocops", True, white)
-        start_screen_text2 = font1.render("Stimmt so", True, white)
-        screen.blit(start_screen_text1, (width // 2 - start_screen_text1.get_width() // 2, height // 2 - 80))
-        screen.blit(start_screen_text2, (width // 2 - start_screen_text2.get_width() // 2, height // 2))
         pygame.display.flip()
 
         if current_time - start_ticks >= start_screen_duration:
