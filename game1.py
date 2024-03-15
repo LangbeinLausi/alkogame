@@ -232,7 +232,7 @@ while running:
                             player_speed = 12
                             bier_speed = 3
                             beer_spawn = 0.010
-                            pygame.mixer.unpause()
+                            background_music.play(loops=-1)
                             game_over = False
 
         screen.fill(brown)
