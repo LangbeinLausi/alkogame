@@ -12,7 +12,13 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Die Alkocops')
 
 # Definition der Images:
-image_spieler = pygame.image.load('images\\passi.png')
+image_spieler1 = pygame.image.load('images\\lausi.png')
+image_spieler2 = pygame.image.load('images\\passi.png')
+image_spieler3 = pygame.image.load('images\\nilsi.png')
+image_spieler4 = pygame.image.load('images\\fabi.png')
+image_spieler5 = pygame.image.load('images\\hermann.png')
+
+image_spieler = image_spieler1
 
 # Definition der Farben:
 white = (255, 255, 255)
