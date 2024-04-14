@@ -19,7 +19,7 @@ image_spieler4 = pygame.image.load('images\\fabi.png')
 image_spieler5 = pygame.image.load('images\\hermann.png')
 
 # Spieler-Wahl:
-selected_character = 0  # Default to the first character
+selected_character = 0  # Default 
 character_images = [image_spieler1, image_spieler2, image_spieler3, image_spieler4, image_spieler5]
 
 image_spieler = character_images[selected_character]
@@ -112,8 +112,10 @@ while character_selection:
     screen.fill(brown)
     start_screen_text1 = font1.render("Die Alkocops", True, white)
     start_screen_text2 = font1.render("Stimmt so", True, white)
+    start_screen_text3 = font2.render("das neue premium album", True, white)
     screen.blit(start_screen_text1, (width // 2 - start_screen_text1.get_width() // 2, height - 520))
-    screen.blit(start_screen_text2, (width // 2 - start_screen_text2.get_width() // 2, height - 440))
+    screen.blit(start_screen_text2, (width // 2 - start_screen_text2.get_width() // 2, height - 475))
+    screen.blit(start_screen_text3, (width // 2 - start_screen_text3.get_width() // 2, height - 420))
     character_text = font2.render("Choose Your Character", True, white)
     screen.blit(character_text, (width // 2 - character_text.get_width() // 2, height // 2 - 40))
     enter_text = font2.render("Press Enter", True, white)
